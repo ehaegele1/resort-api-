@@ -61,7 +61,7 @@ class Resorts {
   }
 
   static function update($updated_resort){
-      $query = "UPDATE resorts SET location = $1, photo = $2, WHERE id = $3";
+      $query = "UPDATE resorts SET location = $1, mountain = $2, WHERE id = $3";
       $query_params = array($updated_resort->location, $updated_resort->mountain, $updated_resort->id);
       $result = pg_query_params($query, $query_params);
 
