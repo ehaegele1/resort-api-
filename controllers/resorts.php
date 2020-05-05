@@ -16,15 +16,15 @@ elseif ($_REQUEST['action'] === 'post') {
   echo $request_body;
   echo '!!!!!!!!!!!!!!!!!!!!!!!!\n';
   $body_object = json_decode($request_body);
-  $new_joke = new Resort(null, $body_object->location, $body_object->photo);
-  $all_jokes = Resorts::create($new_resorts);
+  $new_resort = new Resort(null, $body_object->location, $body_object->mountain);
+  $all_resorts = Resorts::create($new_resorts);
   echo json_encode($all_resorts);
 }
 
 else if ($_REQUEST['action'] === 'update') {
   $request_body = file_get_contents('php://input');
   $body_object = json_decode($request_body);
-  $updated_resort = new Resort($_REQUEST['id'], $body_object->location, $body_object->photo);
+  $updated_resort = new Resort($_REQUEST['id'], $body_object->location, $body_object->mountain);
   $all_resorts = Resort::update($updated_resort);
   echo json_encode($all_resorts);
 }
