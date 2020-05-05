@@ -1,0 +1,11 @@
+{
+    "name": "evanhaegele/resort_tracker_api",
+    "authors": [
+        {
+            "name": "Evan Haegele",
+            "email": "ehaegele2019@gmail.com"
+        }
+    ],
+    "require": {
+    }
+}
