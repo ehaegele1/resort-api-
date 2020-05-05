@@ -21,12 +21,12 @@ if(getenv('DATABASE_URL')){
 
 class Resort {
   public $location;
-  public $photo;
+  public $mountain;
   public $id;
 
-  public function __construct($location, $photo, $id){
+  public function __construct($location, $mountain, $id){
     $this->location = $location;
-    $this->photo = $photo;
+    $this->mountain = $mountain;
     $this->id = $id;
   }
 }
@@ -41,7 +41,7 @@ class Resorts {
     while($row_object){
       $new_resort = new Resort(
         $row_object->location,
-        $row_object->photo,
+        $row_object->mountain,
         intval($row_object->id)
       );
       $resorts[] = $new_resorts;
@@ -52,17 +52,14 @@ class Resorts {
 
   static function create($resort){
     $query = "INSERT INTO jokes (setup, delivery) VALUES ($1, $2)";
-    $query_params = array($resort->location, $resort->photo);
-    echo ' \n ???????????????????????? \n ' ;
-    echo $query;
-    echo ' \n ???????????????????????? \n ';
+    $query_params = array($resort->location, $resort->mountain);
     pg_query_params($query, $query_params);
     return self::all();
   }
 
   static function update($updated_resort){
       $query = "UPDATE resorts SET location = $1, photo = $2, WHERE id = $3";
-      $query_params = array($updated_resort->location, $updated_resort->photo, $updated_joke->id);
+      $query_params = array($updated_resort->location, $updated_resort->mountain, $updated_resort->id);
       $result = pg_query_params($query, $query_params);
 
       return self::all();
