@@ -20,14 +20,16 @@ if(getenv('DATABASE_URL')){
 }
 
 class Resort {
+  public $id;
   public $location;
   public $mountain;
-  public $id;
 
-  public function __construct($location, $mountain, $id){
+
+  public function __construct($id, $location, $mountain){
+    $this->id = $id;
     $this->location = $location;
     $this->mountain = $mountain;
-    $this->id = $id;
+
   }
 }
 
@@ -40,9 +42,10 @@ class Resorts {
     $row_object = pg_fetch_object($results);
     while($row_object){
       $new_resort = new Resort(
+        intval($row_object->id)
         $row_object->location,
         $row_object->mountain,
-        intval($row_object->id)
+
       );
       $resorts[] = $new_resorts;
       $row_object = pg_fetch_object($results);
@@ -51,7 +54,7 @@ class Resorts {
   }
 
   static function create($resort){
-    $query = "INSERT INTO jokes (setup, delivery) VALUES ($1, $2)";
+    $query = "INSERT INTO resorts (location, mountain) VALUES ($1, $2)";
     $query_params = array($resort->location, $resort->mountain);
     pg_query_params($query, $query_params);
     return self::all();

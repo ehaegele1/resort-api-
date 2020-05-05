@@ -13,7 +13,7 @@ if ($_REQUEST['action'] === 'index') {
 elseif ($_REQUEST['action'] === 'post') {
   $request_body = file_get_contents('php://input');
   $body_object = json_decode($request_body);
-  $new_resort = new Resort($body_object->location, $body_object->mountain, null);
+  $new_resort = new Resort(null, $body_object->location, $body_object->mountain);
   $all_resorts = Resorts::create($new_resorts);
   echo json_encode($all_resorts);
 }
