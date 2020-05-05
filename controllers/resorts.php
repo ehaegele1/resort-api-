@@ -12,7 +12,7 @@ elseif ($_REQUEST['action'] === 'post') {
   $request_body = file_get_contents('php://input');
   $body_object = json_decode($request_body);
   $new_resort = new Resort(null, $body_object->location, $body_object->mountain);
-  $all_resorts = Resorts::create($new_resorts);
+  $all_resorts = Resorts::create($new_resort);
   echo json_encode($all_resorts);
 }
 
